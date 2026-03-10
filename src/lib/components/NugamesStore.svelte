@@ -3,9 +3,9 @@
 </script>
 
 <section class="py-8 md:py-12 lg:py-16">
-	<div class=" mx-auto">
+	<div class="mx-auto">
 		<div
-			class=" border-2 border-[#161C2D] p-4 md:p-6 lg:p-12 relative overflow-hidden min-h-[280px] md:min-h-[350px] lg:min-h-[442px] flex-col sm:flex-row gap-12 flex justify-center"
+			class="border-2 border-[#161C2D] p-4 md:p-6 lg:p-12 relative overflow-hidden min-h-[280px] md:min-h-[350px] lg:min-h-[442px] flex-col sm:flex-row gap-12 flex justify-center"
 		>
 			<div>
 				<img src="/store.png" alt="NUGA Store Background" class="w-full h-[380px]" />
@@ -13,15 +13,33 @@
 
 			<div class="justify-center items-start flex flex-col text-left">
 				<h1
-					class="text-xl font-['Raleway'] text-black md:text-3xl lg:text-6xl mb-4 md:mb-6 lg:mb-8 font-bold"
+					class="text-xl font-['Raleway'] text-black md:text-3xl lg:text-6xl mb-4 md:mb-6 lg:mb-8 font-bold leading-tight"
 				>
-					<span class="border-b-4 border-[#F5E6D3] pb-1">NUGames</span> Online Store
+					<span class="relative inline-block px-1">
+						<span class="relative z-10">NUGames</span>
+						<svg
+							class="absolute -bottom-8 left-0 w-[110%] h-[80px] -translate-x-[2%] z-0 pointer-events-none"
+							viewBox="0 0 300 30"
+							preserveAspectRatio="none"
+						>
+							<path
+								d="M5 20 C 50 15, 150 15, 295 18 C 200 22, 100 25, 5 22 Z"
+								fill="#FFE492"
+								opacity="0.9"
+							/>
+						</svg>
+					</span>
+					Online Store
 				</h1>
+
 				<p
 					class="text-black font-['Raleway'] text-sm md:text-lg lg:text-xl mb-4 md:mb-6 lg:mb-8 font-medium"
 				>
-					Gear up for the games with official Paradise Games merchandise! Explore our <br />
-					wide selection of jerseys, hoodies, hats, and water bottles. Show your support for <br />
+					Gear up for the games with official Paradise Games merchandise! Explore our <br
+						class="hidden lg:block"
+					/>
+					wide selection of jerseys, hoodies, hats, and water bottles. Show your support for
+					<br class="hidden lg:block" />
 					your favorite team or sport with high-quality apparel and accessories.
 				</p>
 				<div>
@@ -31,3 +49,10 @@
 		</div>
 	</div>
 </section>
+
+<style>
+	/* Ensures the SVG scales smoothly without pixelation */
+	svg path {
+		vector-effect: non-scaling-stroke;
+	}
+</style>
