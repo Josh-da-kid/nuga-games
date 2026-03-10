@@ -353,18 +353,54 @@
 		</svg>
 	</button> -->
 
-	<!-- Dots -->
-	<div class="flex justify-center gap-2 mt-4">
-		{#each images as image, index (image.src)}
-			<button
-				onclick={() => goToSlide(index)}
-				class="w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 {index ===
-				currentIndex
-					? 'bg-blue-600 w-6 md:w-8'
-					: 'bg-white/50 hover:bg-white/70'}"
-				aria-label="Go to slide {index + 1}"
-			></button>
-		{/each}
+	<!-- Dots with Navigation -->
+	<div class="flex items-center justify-center gap-4 mt-12">
+		<button
+			onclick={prevSlide}
+			class="p-2 text-gray-400 hover:text-gray-600 transition-colors"
+			aria-label="Previous slide"
+		>
+			<svg xmlns="http://www.w3.org/2000/svg" width="28" height="16" viewBox="0 0 16 9">
+				<path
+					fill="currentColor"
+					d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5"
+				/>
+				<path
+					fill="currentColor"
+					d="M6 8.5a.47.47 0 0 1-.35-.15l-3.5-3.5c-.2-.2-.2-.51 0-.71L5.65.65c.2-.2.51-.2.71 0s.2.51 0 .71L3.21 4.51l3.15 3.15c.2.2.2.51 0 .71c-.1.1-.23.15-.35.15Z"
+				/>
+			</svg>
+		</button>
+
+		<div class="flex gap-2">
+			{#each images as image, index (image.src)}
+				<button
+					onclick={() => goToSlide(index)}
+					class="w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 {index ===
+					currentIndex
+						? 'bg-blue-600 w-6 md:w-8'
+						: 'bg-white/50 hover:bg-white/70'}"
+					aria-label="Go to slide {index + 1}"
+				></button>
+			{/each}
+		</div>
+
+		<button
+			onclick={nextSlide}
+			class="p-2 text-gray-400 hover:text-gray-600 transition-colors"
+			aria-label="Next slide"
+		>
+			<svg xmlns="http://www.w3.org/2000/svg" width="28" height="16" viewBox="0 0 16 9">
+				<path
+					fill="currentColor"
+					d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5"
+				/>
+				<path
+					fill="currentColor"
+					d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z"
+				/>
+			</svg>
+		</button>
 	</div>
 </div>
 
