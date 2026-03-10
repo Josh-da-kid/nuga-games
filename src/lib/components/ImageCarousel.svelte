@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { fly, fade } from 'svelte/transition';
-	import { cubicOut, cubicInOut } from 'svelte/easing';
+	import { fly } from 'svelte/transition';
+	import type { EasingFunction, TransitionConfig } from 'svelte/transition';
 
 	interface Props {
 		images: Array<{ src: string; alt: string }>;
@@ -29,10 +29,78 @@
 	$effect(() => {
 		const interval = setInterval(() => {
 			nextSlide();
-		}, 4000);
+		}, 4500);
 
 		return () => clearInterval(interval);
 	});
+
+	const easeOutExpo: EasingFunction = (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t));
+
+	const easeOutBack: EasingFunction = (t) => {
+		const c1 = 1.70158;
+		const c3 = c1 + 1;
+		return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2);
+	};
+
+	const easeInOutQuart: EasingFunction = (t) =>
+		t < 0.5 ? 8 * t * t * t * t : 1 - Math.pow(-2 * t + 2, 4) / 2;
+
+	interface Transition3DOptions {
+		x?: number;
+		scale?: number;
+		duration?: number;
+		easing?: EasingFunction;
+	}
+
+	function transition3D(
+		node: Element,
+		{ x = 0, scale = 1, duration = 800, easing = easeOutExpo }: Transition3DOptions
+	): TransitionConfig {
+		const style = getComputedStyle(node);
+		const targetOpacity = +style.opacity;
+		const transform = style.transform === 'none' ? '' : style.transform;
+		const od = targetOpacity;
+
+		return {
+			duration,
+			easing,
+			css: (t, u) => `
+				transform: ${transform} translateX(${x * u}px) scale(${1 + (scale - 1) * u});
+				opacity: ${targetOpacity - od * u}
+			`
+		};
+	}
+
+	function transition3DIn(node: Element, options: Transition3DOptions): TransitionConfig {
+		const style = getComputedStyle(node);
+		const transform = style.transform === 'none' ? '' : style.transform;
+		const { x = 0, scale = 0.8, duration = 800, easing = easeOutExpo } = options;
+
+		return {
+			duration,
+			easing,
+			css: (t) => `
+				transform: ${transform} translateX(${x * (1 - t)}px) scale(${scale + (1 - scale) * t});
+				opacity: ${t}
+			`
+		};
+	}
+
+	function transition3DOut(node: Element, options: Transition3DOptions): TransitionConfig {
+		const style = getComputedStyle(node);
+		const transform = style.transform === 'none' ? '' : style.transform;
+		const targetOpacity = +style.opacity;
+		const { x = 0, scale = 0.8, duration = 600, easing = easeInOutQuart } = options;
+
+		return {
+			duration,
+			easing,
+			css: (t) => `
+				transform: ${transform} translateX(${x * (1 - t)}px) scale(${scale + (1 - scale) * t});
+				opacity: ${targetOpacity * t}
+			`
+		};
+	}
 </script>
 
 <div class="relative w-full py-8">
@@ -42,8 +110,8 @@
 				<!-- Far Previous (smallest) -->
 				<div
 					class="absolute left-0 top-1/2 -translate-y-1/2 z-[1]"
-					in:fly={{ x: -50, duration: 1200, easing: cubicOut }}
-					out:fly={{ x: -100, duration: 800, easing: cubicInOut }}
+					in:transition3DIn={{ x: -120, scale: 0.6, duration: 900, easing: easeOutExpo }}
+					out:transition3DOut={{ x: -180, scale: 0.5, duration: 600, easing: easeInOutQuart }}
 				>
 					<img
 						src={images[getIndex(-2)].src}
@@ -56,8 +124,8 @@
 				<!-- Previous (smaller than current) -->
 				<div
 					class="absolute left-[8%] top-1/2 -translate-y-1/2 z-[2]"
-					in:fly={{ x: -80, duration: 1000, easing: cubicOut }}
-					out:fly={{ x: -150, duration: 800, easing: cubicInOut }}
+					in:transition3DIn={{ x: -100, scale: 0.75, duration: 800, easing: easeOutBack }}
+					out:transition3DOut={{ x: -160, scale: 0.6, duration: 600, easing: easeInOutQuart }}
 				>
 					<img
 						src={images[getIndex(-1)].src}
@@ -70,8 +138,8 @@
 				<!-- Current Image (full height) -->
 				<div
 					class="relative z-10"
-					in:fly={{ x: 150, duration: 1000, easing: cubicOut }}
-					out:fly={{ x: -150, duration: 1000, easing: cubicInOut }}
+					in:transition3DIn={{ x: 180, scale: 0.85, duration: 850, easing: easeOutBack }}
+					out:transition3DOut={{ x: -180, scale: 0.85, duration: 700, easing: easeInOutQuart }}
 				>
 					<img
 						src={images[currentIndex].src}
@@ -84,8 +152,8 @@
 				<!-- Next (smaller than current) -->
 				<div
 					class="absolute right-[8%] top-1/2 -translate-y-1/2 z-[2]"
-					in:fly={{ x: 80, duration: 1000, easing: cubicOut }}
-					out:fly={{ x: 150, duration: 800, easing: cubicInOut }}
+					in:transition3DIn={{ x: 100, scale: 0.75, duration: 800, easing: easeOutBack }}
+					out:transition3DOut={{ x: 160, scale: 0.6, duration: 600, easing: easeInOutQuart }}
 				>
 					<img
 						src={images[getIndex(1)].src}
@@ -98,8 +166,8 @@
 				<!-- Far Next (smallest) -->
 				<div
 					class="absolute right-0 top-1/2 -translate-y-1/2 z-[1]"
-					in:fly={{ x: 50, duration: 1200, easing: cubicOut }}
-					out:fly={{ x: 100, duration: 800, easing: cubicInOut }}
+					in:transition3DIn={{ x: 120, scale: 0.6, duration: 900, easing: easeOutExpo }}
+					out:transition3DOut={{ x: 180, scale: 0.5, duration: 600, easing: easeInOutQuart }}
 				>
 					<img
 						src={images[getIndex(2)].src}
