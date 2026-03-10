@@ -11,7 +11,8 @@
 		{
 			id: 2,
 			title: 'Athletics Championship',
-			thumbnail: 'https://images.unsplash.com/photo-1551958179-a779828110cf?w=600&q=80',
+			thumbnail:
+				'https://images.unsplash.com/photo-1486218119243-13883505764c?w=600&h=750&fit=crop',
 			duration: '8:15',
 			description:
 				'Watch the fastest athletes from Nigerian universities compete for gold in track and field events.'
