@@ -17,17 +17,8 @@
 				>
 					<span class="relative inline-block px-1">
 						<span class="relative z-10">NUGames</span>
-						<svg
-							class="absolute -bottom-8 left-0 w-[110%] h-[80px] -translate-x-[2%] z-0 pointer-events-none"
-							viewBox="0 0 300 30"
-							preserveAspectRatio="none"
-						>
-							<path
-								d="M5 20 C 50 15, 150 15, 295 18 C 200 22, 100 25, 5 22 Z"
-								fill="#0F62FE"
-								opacity="0.9"
-							/>
-						</svg>
+
+						<img src="brush.svg" alt="" />
 					</span>
 					Volunteer
 				</h1>
