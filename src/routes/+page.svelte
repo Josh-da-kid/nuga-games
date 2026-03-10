@@ -7,6 +7,8 @@
 	import MediaPortfolio from '$lib/components/MediaPortfolio.svelte';
 	import SportsCategory from '$lib/components/SportCategory.svelte';
 	import NugaRegistry from '$lib/components/NugaRegistry.svelte';
+	import NugaVolunteer from '$lib/components/NugaVolunteer.svelte';
+	import NugamesStore from '$lib/components/NugamesStore.svelte';
 </script>
 
 <svelte:head>
@@ -37,6 +39,8 @@
 		<MediaPortfolio />
 		<SportsCategory />
 		<NugaRegistry />
+		<NugamesStore />
+		<NugaVolunteer />
 	</main>
 
 	<footer class="bg-gray-900 py-12 md:py-16">

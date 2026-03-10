@@ -15,14 +15,13 @@
 				<h1
 					class="text-xl font-['Raleway'] text-white md:text-3xl lg:text-5xl mb-4 md:mb-6 lg:mb-8 font-bold"
 				>
-					NUGAGames Registry
+					NUGAmes Registry
 				</h1>
 				<p
 					class="text-gray-300 font-['Raleway'] text-sm md:text-lg lg:text-xl mb-4 md:mb-6 lg:mb-8 font-medium"
 				>
-					Register your university's participation in the NUGA Games and be part of the excitement.
-					Join the ranks of student athletes <br /> from across Nigeria and compete for glory at the University
-					of Calabar in 2026.
+					A central hub showcasing verified profiles, official records, and historic highlights--built for <br/>
+                    discovery, recognition, and legacy.
 				</p>
 
 				<div class="flex gap-6">
@@ -30,16 +29,18 @@
 					<Button kind="tertiary" class="bg-white">Sign In</Button>
 				</div>
 
-				<div class="absolute bottom-0 right-0">
+				<div class="absolute bottom-[-5%] right-[-10%] translate-x-[-30%]">
 					<img
 						src="ball.svg"
 						alt="NUGA Registry Background"
-						class="w-32 h-32 md:w-48 md:h-48 lg:w-[481px] lg:h-[303px]"
+						class="w-48 h-48 md:w-64 md:h-64 lg:w-[600px] lg:h-[400px]"
 					/>
+				</div>
+				<div class="absolute top-[-10%] right-[-10%]">
 					<img
 						src="tennis-ball.svg"
 						alt="NUGA Registry Background"
-						class="w-32 h-32 md:w-48 md:h-48 lg:w-[481px] lg:h-[303px] absolute bottom-4 right-4 md:bottom-6 md:right-6 lg:bottom-8 lg:right-8 drop-shadow-lg"
+						class="w-48 h-48 md:w-64 md:h-64 lg:w-[600px] lg:h-[400px] drop-shadow-lg z-10"
 					/>
 				</div>
 			</div>
