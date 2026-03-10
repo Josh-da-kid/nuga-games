@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { fly } from 'svelte/transition';
 	import type { EasingFunction, TransitionConfig } from 'svelte/transition';
 
 	interface Props {
@@ -182,8 +181,8 @@
 				<!-- Previous -->
 				<div
 					class="absolute left-[10%] top-1/2 -translate-y-1/2 z-[2]"
-					in:fly={{ x: -80, duration: 1000, easing: cubicOut }}
-					out:fly={{ x: -150, duration: 800, easing: cubicInOut }}
+					in:transition3DIn={{ x: -100, scale: 0.75, duration: 800, easing: easeOutBack }}
+					out:transition3DOut={{ x: -160, scale: 0.6, duration: 600, easing: easeInOutQuart }}
 				>
 					<img
 						src={images[getIndex(-1)].src}
@@ -196,8 +195,8 @@
 				<!-- Current -->
 				<div
 					class="relative z-10"
-					in:fly={{ x: 150, duration: 1000, easing: cubicOut }}
-					out:fly={{ x: -150, duration: 1000, easing: cubicInOut }}
+					in:transition3DIn={{ x: 180, scale: 0.85, duration: 850, easing: easeOutBack }}
+					out:transition3DOut={{ x: -180, scale: 0.85, duration: 700, easing: easeInOutQuart }}
 				>
 					<img
 						src={images[currentIndex].src}
@@ -210,8 +209,8 @@
 				<!-- Next -->
 				<div
 					class="absolute right-[10%] top-1/2 -translate-y-1/2 z-[2]"
-					in:fly={{ x: 80, duration: 1000, easing: cubicOut }}
-					out:fly={{ x: 150, duration: 800, easing: cubicInOut }}
+					in:transition3DIn={{ x: 100, scale: 0.75, duration: 800, easing: easeOutBack }}
+					out:transition3DOut={{ x: 160, scale: 0.6, duration: 600, easing: easeInOutQuart }}
 				>
 					<img
 						src={images[getIndex(1)].src}
@@ -226,8 +225,8 @@
 				<!-- Previous -->
 				<div
 					class="absolute left-[12%] top-1/2 -translate-y-1/2 z-[2]"
-					in:fly={{ x: -80, duration: 1000, easing: cubicOut }}
-					out:fly={{ x: -150, duration: 800, easing: cubicInOut }}
+					in:transition3DIn={{ x: -100, scale: 0.75, duration: 800, easing: easeOutBack }}
+					out:transition3DOut={{ x: -160, scale: 0.6, duration: 600, easing: easeInOutQuart }}
 				>
 					<img
 						src={images[getIndex(-1)].src}
@@ -240,8 +239,8 @@
 				<!-- Current -->
 				<div
 					class="relative z-10"
-					in:fly={{ x: 150, duration: 1000, easing: cubicOut }}
-					out:fly={{ x: -150, duration: 1000, easing: cubicInOut }}
+					in:transition3DIn={{ x: 180, scale: 0.85, duration: 850, easing: easeOutBack }}
+					out:transition3DOut={{ x: -180, scale: 0.85, duration: 700, easing: easeInOutQuart }}
 				>
 					<img
 						src={images[currentIndex].src}
@@ -254,8 +253,8 @@
 				<!-- Next -->
 				<div
 					class="absolute right-[12%] top-1/2 -translate-y-1/2 z-[2]"
-					in:fly={{ x: 80, duration: 1000, easing: cubicOut }}
-					out:fly={{ x: 150, duration: 800, easing: cubicInOut }}
+					in:transition3DIn={{ x: 100, scale: 0.75, duration: 800, easing: easeOutBack }}
+					out:transition3DOut={{ x: 160, scale: 0.6, duration: 600, easing: easeInOutQuart }}
 				>
 					<img
 						src={images[getIndex(1)].src}
@@ -269,8 +268,8 @@
 			{#key currentIndex}
 				<div
 					class="relative z-10 flex"
-					in:fly={{ x: 150, duration: 1000, easing: cubicOut }}
-					out:fly={{ x: -150, duration: 1000, easing: cubicInOut }}
+					in:transition3DIn={{ x: 180, scale: 0.85, duration: 850, easing: easeOutBack }}
+					out:transition3DOut={{ x: -180, scale: 0.85, duration: 700, easing: easeInOutQuart }}
 				>
 					<img
 						src={images[0].src}
@@ -290,8 +289,8 @@
 			{#key currentIndex}
 				<div
 					class="relative z-10"
-					in:fly={{ x: 150, duration: 1000, easing: cubicOut }}
-					out:fly={{ x: -150, duration: 1000, easing: cubicInOut }}
+					in:transition3DIn={{ x: 180, scale: 0.85, duration: 850, easing: easeOutBack }}
+					out:transition3DOut={{ x: -180, scale: 0.85, duration: 700, easing: easeInOutQuart }}
 				>
 					<img
 						src={images[0].src}
@@ -327,7 +326,7 @@
 
 	<!-- Dots -->
 	<div class="flex justify-center gap-2 mt-4">
-		{#each images as _, index}
+		{#each images as image, index (image.src)}
 			<button
 				onclick={() => goToSlide(index)}
 				class="w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 {index ===
