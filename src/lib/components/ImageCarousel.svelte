@@ -75,8 +75,7 @@
 			duration,
 			easing,
 			css: (t) => `
-				transform: ${transform} translateX(${x * (1 - t)}px) scale(${scale + (1 - scale) * t});
-				opacity: ${t}
+				transform: ${transform} translateX(${x * (1 - t)}px) scale(${scale + (1 - scale) * t})
 			`
 		};
 	}
@@ -84,15 +83,13 @@
 	function transition3DOut(node: Element, options: Transition3DOptions): TransitionConfig {
 		const style = getComputedStyle(node);
 		const transform = style.transform === 'none' ? '' : style.transform;
-		const targetOpacity = +style.opacity;
 		const { x = 0, scale = 0.8, duration = 600, easing = easeInOutCubic } = options;
 
 		return {
 			duration,
 			easing,
 			css: (t) => `
-				transform: ${transform} translateX(${x * (1 - t)}px) scale(${scale + (1 - scale) * t});
-				opacity: ${targetOpacity * t}
+				transform: ${transform} translateX(${x * (1 - t)}px) scale(${scale + (1 - scale) * t})
 			`
 		};
 	}
@@ -105,8 +102,8 @@
 				<!-- Far Previous (smallest) -->
 				<div
 					class="absolute left-0 top-1/2 -translate-y-1/2 z-[1]"
-					in:transition3DIn={{ x: -80, scale: 0.7, duration: 700, easing: easeOutCubic }}
-					out:transition3DOut={{ x: -150, scale: 0.5, duration: 600, easing: easeInOutCubic }}
+					in:transition3DIn={{ x: -80, scale: 0.7, duration: 400, easing: easeOutCubic }}
+					out:transition3DOut={{ x: -150, scale: 0.5, duration: 350, easing: easeInOutCubic }}
 				>
 					<img
 						src={images[getIndex(-2)].src}
@@ -119,8 +116,8 @@
 				<!-- Previous (smaller than current) -->
 				<div
 					class="absolute left-[8%] top-1/2 -translate-y-1/2 z-[2]"
-					in:transition3DIn={{ x: -60, scale: 0.85, duration: 600, easing: easeOutCubic }}
-					out:transition3DOut={{ x: -120, scale: 0.7, duration: 600, easing: easeInOutCubic }}
+					in:transition3DIn={{ x: -60, scale: 0.85, duration: 350, easing: easeOutCubic }}
+					out:transition3DOut={{ x: -120, scale: 0.7, duration: 350, easing: easeInOutCubic }}
 				>
 					<img
 						src={images[getIndex(-1)].src}
@@ -132,9 +129,9 @@
 
 				<!-- Current Image (full height) -->
 				<div
-					class="relative z-10"
-					in:transition3DIn={{ x: 60, scale: 0.92, duration: 600, easing: easeOutCubic }}
-					out:transition3DOut={{ x: -60, scale: 0.92, duration: 600, easing: easeInOutCubic }}
+					class="relative z-30"
+					in:transition3DIn={{ x: 60, scale: 0.92, duration: 350, easing: easeOutCubic }}
+					out:transition3DOut={{ x: -60, scale: 0.92, duration: 350, easing: easeInOutCubic }}
 				>
 					<img
 						src={images[currentIndex].src}
@@ -147,8 +144,8 @@
 				<!-- Next (smaller than current) -->
 				<div
 					class="absolute right-[8%] top-1/2 -translate-y-1/2 z-[2]"
-					in:transition3DIn={{ x: 60, scale: 0.85, duration: 600, easing: easeOutCubic }}
-					out:transition3DOut={{ x: 120, scale: 0.7, duration: 600, easing: easeInOutCubic }}
+					in:transition3DIn={{ x: 60, scale: 0.85, duration: 350, easing: easeOutCubic }}
+					out:transition3DOut={{ x: 120, scale: 0.7, duration: 350, easing: easeInOutCubic }}
 				>
 					<img
 						src={images[getIndex(1)].src}
@@ -161,8 +158,8 @@
 				<!-- Far Next (smallest) -->
 				<div
 					class="absolute right-0 top-1/2 -translate-y-1/2 z-[1]"
-					in:transition3DIn={{ x: 80, scale: 0.7, duration: 700, easing: easeOutCubic }}
-					out:transition3DOut={{ x: 150, scale: 0.5, duration: 600, easing: easeInOutCubic }}
+					in:transition3DIn={{ x: 80, scale: 0.7, duration: 400, easing: easeOutCubic }}
+					out:transition3DOut={{ x: 150, scale: 0.5, duration: 350, easing: easeInOutCubic }}
 				>
 					<img
 						src={images[getIndex(2)].src}
@@ -177,8 +174,8 @@
 				<!-- Previous -->
 				<div
 					class="absolute left-[10%] top-1/2 -translate-y-1/2 z-[2]"
-					in:transition3DIn={{ x: -60, scale: 0.85, duration: 600, easing: easeOutCubic }}
-					out:transition3DOut={{ x: -120, scale: 0.7, duration: 600, easing: easeInOutCubic }}
+					in:transition3DIn={{ x: -60, scale: 0.85, duration: 350, easing: easeOutCubic }}
+					out:transition3DOut={{ x: -120, scale: 0.7, duration: 350, easing: easeInOutCubic }}
 				>
 					<img
 						src={images[getIndex(-1)].src}
@@ -190,9 +187,9 @@
 
 				<!-- Current -->
 				<div
-					class="relative z-10"
-					in:transition3DIn={{ x: 60, scale: 0.92, duration: 600, easing: easeOutCubic }}
-					out:transition3DOut={{ x: -60, scale: 0.92, duration: 600, easing: easeInOutCubic }}
+					class="relative z-30"
+					in:transition3DIn={{ x: 60, scale: 0.92, duration: 350, easing: easeOutCubic }}
+					out:transition3DOut={{ x: -60, scale: 0.92, duration: 350, easing: easeInOutCubic }}
 				>
 					<img
 						src={images[currentIndex].src}
@@ -205,8 +202,8 @@
 				<!-- Next -->
 				<div
 					class="absolute right-[10%] top-1/2 -translate-y-1/2 z-[2]"
-					in:transition3DIn={{ x: 60, scale: 0.85, duration: 600, easing: easeOutCubic }}
-					out:transition3DOut={{ x: 120, scale: 0.7, duration: 600, easing: easeInOutCubic }}
+					in:transition3DIn={{ x: 60, scale: 0.85, duration: 350, easing: easeOutCubic }}
+					out:transition3DOut={{ x: 120, scale: 0.7, duration: 350, easing: easeInOutCubic }}
 				>
 					<img
 						src={images[getIndex(1)].src}
@@ -221,8 +218,8 @@
 				<!-- Previous -->
 				<div
 					class="absolute left-[12%] top-1/2 -translate-y-1/2 z-[2]"
-					in:transition3DIn={{ x: -60, scale: 0.85, duration: 600, easing: easeOutCubic }}
-					out:transition3DOut={{ x: -120, scale: 0.7, duration: 600, easing: easeInOutCubic }}
+					in:transition3DIn={{ x: -60, scale: 0.85, duration: 350, easing: easeOutCubic }}
+					out:transition3DOut={{ x: -120, scale: 0.7, duration: 350, easing: easeInOutCubic }}
 				>
 					<img
 						src={images[getIndex(-1)].src}
@@ -234,9 +231,9 @@
 
 				<!-- Current -->
 				<div
-					class="relative z-10"
-					in:transition3DIn={{ x: 60, scale: 0.92, duration: 600, easing: easeOutCubic }}
-					out:transition3DOut={{ x: -60, scale: 0.92, duration: 600, easing: easeInOutCubic }}
+					class="relative z-30"
+					in:transition3DIn={{ x: 60, scale: 0.92, duration: 350, easing: easeOutCubic }}
+					out:transition3DOut={{ x: -60, scale: 0.92, duration: 350, easing: easeInOutCubic }}
 				>
 					<img
 						src={images[currentIndex].src}
@@ -249,8 +246,8 @@
 				<!-- Next -->
 				<div
 					class="absolute right-[12%] top-1/2 -translate-y-1/2 z-[2]"
-					in:transition3DIn={{ x: 60, scale: 0.85, duration: 600, easing: easeOutCubic }}
-					out:transition3DOut={{ x: 120, scale: 0.7, duration: 600, easing: easeInOutCubic }}
+					in:transition3DIn={{ x: 60, scale: 0.85, duration: 350, easing: easeOutCubic }}
+					out:transition3DOut={{ x: 120, scale: 0.7, duration: 350, easing: easeInOutCubic }}
 				>
 					<img
 						src={images[getIndex(1)].src}
@@ -263,9 +260,9 @@
 		{:else if images.length === 2}
 			{#key currentIndex}
 				<div
-					class="relative z-10 flex"
-					in:transition3DIn={{ x: 60, scale: 0.92, duration: 600, easing: easeOutCubic }}
-					out:transition3DOut={{ x: -60, scale: 0.92, duration: 600, easing: easeInOutCubic }}
+					class="relative z-30 flex"
+					in:transition3DIn={{ x: 60, scale: 0.92, duration: 350, easing: easeOutCubic }}
+					out:transition3DOut={{ x: -60, scale: 0.92, duration: 350, easing: easeInOutCubic }}
 				>
 					<img
 						src={images[0].src}
@@ -284,9 +281,9 @@
 		{:else if images.length === 1}
 			{#key currentIndex}
 				<div
-					class="relative z-10"
-					in:transition3DIn={{ x: 60, scale: 0.92, duration: 600, easing: easeOutCubic }}
-					out:transition3DOut={{ x: -60, scale: 0.92, duration: 600, easing: easeInOutCubic }}
+					class="relative z-30"
+					in:transition3DIn={{ x: 60, scale: 0.92, duration: 350, easing: easeOutCubic }}
+					out:transition3DOut={{ x: -60, scale: 0.92, duration: 350, easing: easeInOutCubic }}
 				>
 					<img
 						src={images[0].src}
@@ -377,28 +374,28 @@
 	}
 
 	.carousel-current {
-		height: 224px;
-		width: 400px;
+		height: 252px;
+		width: 450px;
 		border-radius: 48px;
 		box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
 	}
 
 	.carousel-prev {
-		height: 160px;
+		height: 180px;
 		width: auto;
 		border-radius: 48px 0 0 48px;
 		opacity: 0.85;
 	}
 
 	.carousel-next {
-		height: 160px;
+		height: 180px;
 		width: auto;
 		border-radius: 0 48px 48px 0;
 		opacity: 0.85;
 	}
 
 	.carousel-far {
-		height: 96px;
+		height: 108px;
 		width: auto;
 		border-radius: 48px 0 0 48px;
 		opacity: 0.4;
@@ -410,29 +407,29 @@
 
 	@media (min-width: 768px) {
 		.carousel-current {
-			height: 340px;
-			width: 550px;
+			height: 360px;
+			width: 600px;
 		}
 		.carousel-prev,
 		.carousel-next {
-			height: 240px;
+			height: 270px;
 		}
 		.carousel-far {
-			height: 128px;
+			height: 162px;
 		}
 	}
 
 	@media (min-width: 1024px) {
 		.carousel-current {
-			height: 400px;
-			width: 700px;
+			height: 450px;
+			width: 800px;
 		}
 		.carousel-prev,
 		.carousel-next {
-			height: 288px;
+			height: 342px;
 		}
 		.carousel-far {
-			height: 160px;
+			height: 216px;
 		}
 	}
 </style>
