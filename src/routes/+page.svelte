@@ -6,6 +6,7 @@
 	import WelcomeSection from '$lib/components/WelcomeSection.svelte';
 	import MediaPortfolio from '$lib/components/MediaPortfolio.svelte';
 	import SportsCategory from '$lib/components/SportCategory.svelte';
+	import NugaRegistry from '$lib/components/NugaRegistry.svelte';
 </script>
 
 <svelte:head>
@@ -35,6 +36,7 @@
 		<WelcomeSection />
 		<MediaPortfolio />
 		<SportsCategory />
+		<NugaRegistry />
 	</main>
 
 	<footer class="bg-gray-900 py-12 md:py-16">
