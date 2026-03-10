@@ -9,6 +9,7 @@
 	import NugaRegistry from '$lib/components/NugaRegistry.svelte';
 	import NugaVolunteer from '$lib/components/NugaVolunteer.svelte';
 	import NugamesStore from '$lib/components/NugamesStore.svelte';
+	import VarsityGames from '$lib/components/VarsityGames.svelte';
 </script>
 
 <svelte:head>
@@ -41,6 +42,7 @@
 		<NugaRegistry />
 		<NugamesStore />
 		<NugaVolunteer />
+		<VarsityGames />
 	</main>
 
 	<footer class="bg-gray-900 py-12 md:py-16">

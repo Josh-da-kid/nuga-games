@@ -9,7 +9,7 @@
 		>
 			<div
 				class="absolute inset-0 opacity-40"
-				style="background-image: url('/bg.svg'); background-size: 150% 100%; background-repeat: no-repeat; background-position: left center;"
+				style="background-image: url('/bg.svg'); background-size: auto 100%; background-repeat: no-repeat; background-position: left top;"
 			></div>
 			<div class="z-10 text-center lg:text-left items-center justify-center mx-auto">
 				<h1
