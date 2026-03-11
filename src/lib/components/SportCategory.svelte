@@ -75,7 +75,7 @@
 					alt={cat.name}
 					class="h-[150px] sm:h-[200px] md:h-[280px] lg:h-[390px] w-full object-contain"
 				/>
-				<span class="text-blue-900 font-semibold text-sm sm:text-base md:text-lg text-center"
+				<span class="text-blue-900 font-semibold text-base sm:text-lg md:text-xl text-center"
 					>{cat.name}</span
 				>
 			</div>
