@@ -131,9 +131,23 @@
 						<p class="text-white/90 text-base md:text-lg mb-6 md:mb-8 leading-relaxed">
 							{slide.description}
 						</p>
-						<button class="w-fit px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white"
-							>{slide.buttonText}</button
-						>
+						<button
+							class="w-fit px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-2"
+							><span class="flex items-center gap-2"
+								>{slide.buttonText}
+								<svg
+									width="16"
+									height="16"
+									viewBox="0 0 32 32"
+									fill="currentColor"
+									aria-hidden="true"
+								>
+									<path
+										d="M27.414 15L6 15a1 1 0 0 0 0 2l21.414 0-6.707 6.707 1.414 1.414L30.414 17 22.121 8.879l-1.414 1.414z"
+									/>
+								</svg>
+							</span>
+						</button>
 					</div>
 				{/if}
 			{/each}

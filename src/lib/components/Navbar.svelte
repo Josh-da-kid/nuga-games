@@ -51,9 +51,11 @@
 				</div>
 				<div class="flex flex-col items-start">
 					<a href="/" class="flex items-center gap-2">
-						<span class="text-gray-900 font-bold text-xl md:text-xl">Paradise Games</span>
+						<span class="text-gray-900 font-bold text-lg md:text-xl">Paradise Games</span>
 					</a>
-					<small class="font-medium text-sm text-gray-900">Unical Radio International 2026</small>
+					<small class="font-medium sm:text-base text-gray-900"
+						>Unical Radio International 2026</small
+					>
 				</div>
 			</div>
 
@@ -74,8 +76,15 @@
 			<div class="hidden lg:flex items-center gap-4">
 				<button
 					class="flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-6 p-3"
-					>Join Now</button
-				>
+					><span class="flex items-center gap-2"
+						>Join Now
+						<svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+							<path
+								d="M27.414 15L6 15a1 1 0 0 0 0 2l21.414 0-6.707 6.707 1.414 1.414L30.414 17 22.121 8.879l-1.414 1.414z"
+							/>
+						</svg>
+					</span>
+				</button>
 				<a
 					href="#ezibiz"
 					class="text-amber-700 font-bold hover:text-gray-900 transition-colors duration-200 text-sm"
@@ -214,7 +223,14 @@
 			<button
 				class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-200"
 			>
-				Join Now
+				<span class="flex items-center justify-center gap-2">
+					Join Now
+					<svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+						<path
+							d="M27.414 15L6 15a1 1 0 0 0 0 2l21.414 0-6.707 6.707 1.414 1.414L30.414 17 22.121 8.879l-1.414 1.414z"
+						/>
+					</svg>
+				</span>
 			</button>
 			<p class="text-center text-gray-500 text-xs mt-4">
 				© 2026 Paradise Games. All rights reserved.

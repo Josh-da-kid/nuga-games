@@ -31,7 +31,22 @@
 
 				<div class="flex gap-4 justify-center">
 					<Button>Join In</Button>
-					<Button kind="tertiary" class="bg-white">Learn More</Button>
+					<Button kind="tertiary" class="bg-white"
+						><span class="flex items-center gap-2"
+							>Learn More
+							<svg
+								width="16"
+								height="16"
+								viewBox="0 0 32 32"
+								fill="currentColor"
+								aria-hidden="true"
+							>
+								<path
+									d="M27.414 15L6 15a1 1 0 0 0 0 2l21.414 0-6.707 6.707 1.414 1.414L30.414 17 22.121 8.879l-1.414 1.414z"
+								/>
+							</svg>
+						</span>
+					</Button>
 				</div>
 			</div>
 		</div>

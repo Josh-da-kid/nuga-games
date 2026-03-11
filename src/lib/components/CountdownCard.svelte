@@ -23,7 +23,7 @@
 						>
 							{String(days).padStart(2, '0')}
 						</span>
-						<span class="text-gray-500 text-xs md:text-sm lg:text-lg font-medium mt-1 lg:mt-2"
+						<span class="text-gray-700 text-xs md:text-sm lg:text-lg font-medium mt-1 lg:mt-2"
 							>DAYS</span
 						>
 					</div>
@@ -41,7 +41,7 @@
 						>
 							{String(hours).padStart(2, '0')}
 						</span>
-						<span class="text-gray-500 text-xs md:text-sm lg:text-lg font-medium mt-1 lg:mt-2"
+						<span class="text-gray-700 text-xs md:text-sm lg:text-lg font-medium mt-1 lg:mt-2"
 							>HOURS</span
 						>
 					</div>
@@ -59,7 +59,7 @@
 						>
 							{String(minutes).padStart(2, '0')}
 						</span>
-						<span class="text-gray-500 text-xs md:text-sm lg:text-lg font-medium mt-1 lg:mt-2"
+						<span class="text-gray-700 text-xs md:text-sm lg:text-lg font-medium mt-1 lg:mt-2"
 							>MINUTES</span
 						>
 					</div>

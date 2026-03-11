@@ -58,7 +58,7 @@
 		<h1 class="font-bold text-2xl sm:text-3xl md:text-5xl">Explore By Sports Category</h1>
 		<p class="text-base sm:text-xl md:text-3xl">
 			Discover the Games your way - browse through sports categories, explore registered events, and
-			find the <br class="hidden sm:block" /> competitions you can't afford to miss.
+			find the competitions you can't afford to miss.
 		</p>
 	</div>
 

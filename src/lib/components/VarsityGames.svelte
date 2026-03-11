@@ -23,18 +23,25 @@
 >
 	<div class="flex flex-col gap-2 md:gap-4">
 		<h1 class="font-bold text-2xl sm:text-3xl md:text-5xl">The Varsity Games Network</h1>
-		<p class="text-base sm:text-xl md:text-3xl">Upcoming UNiversity Games Worldwide</p>
+		<p class="text-base sm:text-xl md:text-3xl">Upcoming University Games Worldwide</p>
 	</div>
 
 	<!-- grid cols 4 for desktop view -->
 	<div
-		class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-16 items-center justify-center mx-auto"
+		class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-16 place-items-center px-2"
 	>
-		{#each category as cat}
+		{#each category as cat, index}
 			<div
-				class="flex flex-col items-center gap-1 cursor-pointer hover:scale-105 transition-transform"
+				class="flex flex-col items-center justify-center gap-1 w-full cursor-pointer hover:scale-105 transition-transform {index ===
+					category.length - 1 && category.length % 2 === 1
+					? 'col-span-2 sm:col-span-1'
+					: ''}"
 			>
-				<img src={cat.image} alt="Varsity networks" class="h-auto w-full object-contain" />
+				<img
+					src={cat.image}
+					alt="Varsity networks"
+					class="h-auto max-w-[200px] sm:max-w-[300px] object-contain"
+				/>
 			</div>
 		{/each}
 	</div>

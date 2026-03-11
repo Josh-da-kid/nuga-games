@@ -64,13 +64,13 @@
 		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 md:gap-8">
 			{#each mediaItems as item (item.id)}
 				<article
-					class="group relative rounded-2xl overflow-hidden cursor-pointer transition-transform duration-300 hover:scale-[1.02] bg-white shadow-sm border border-gray-100"
+					class="group relative rounded-2xl overflow-hidden cursor-pointer transition-transform duration-300 bg-white shadow-sm border border-gray-100"
 				>
 					<div class="aspect-[8/9] relative">
 						<img
 							src={item.thumbnail}
 							alt={item.title}
-							class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+							class="w-full h-full object-cover transition-transform duration-300"
 						/>
 						<div
 							class="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors duration-300"
