@@ -2,7 +2,7 @@
 	import { Button } from 'carbon-components-svelte';
 </script>
 
-<section class="py-8 md:py-12 lg:py-16">
+<section class="pb-24 md:pb-32 lg:pb-40 bg-gray-100/50">
 	<div class="mx-auto">
 		<div
 			class="border-2 border-[#161C2D] p-4 sm:p-6 md:p-12 lg:p-12 relative overflow-hidden min-h-[280px] md:min-h-[350px] lg:min-h-[442px] flex-col sm:flex-row gap-8 sm:gap-12 flex justify-center"
@@ -29,7 +29,7 @@
 					with us to inspire excellence and create lasting impact. <br class="hidden lg:block" /> Together,
 					we're making history at Paradise Games 2026
 				</p>
-				<div class="flex flex-col sm:flex-row gap-4 justify-center items-center mx-auto">
+				<div class="flex gap-4 justify-center items-center mx-auto">
 					<Button>Learn More</Button>
 					<Button kind="tertiary">Become a Partner</Button>
 				</div>
