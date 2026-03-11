@@ -18,15 +18,17 @@
 	];
 </script>
 
-<section class="flex flex-col gap-6 md:gap-12 text-start bg-gray-100 p-6 md:p-12 lg:p-44">
-	<div class="flex flex-col gap-4">
-		<h1 class="font-bold text-3xl md:text-5xl">The Varsity Games Network</h1>
-		<p class="text-xl md:text-3xl">Upcoming UNiversity Games Worldwide</p>
+<section
+	class="flex flex-col gap-6 md:gap-12 text-start bg-gray-100 p-4 sm:p-6 md:p-12 lg:p-24 xl:p-44"
+>
+	<div class="flex flex-col gap-2 md:gap-4">
+		<h1 class="font-bold text-2xl sm:text-3xl md:text-5xl">The Varsity Games Network</h1>
+		<p class="text-base sm:text-xl md:text-3xl">Upcoming UNiversity Games Worldwide</p>
 	</div>
 
 	<!-- grid cols 4 for desktop view -->
 	<div
-		class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-16 items-center justify-center mx-auto"
+		class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-16 items-center justify-center mx-auto"
 	>
 		{#each category as cat}
 			<div
