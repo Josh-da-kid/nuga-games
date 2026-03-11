@@ -28,92 +28,135 @@
 	$effect(() => {
 		const interval = setInterval(() => {
 			nextSlide();
-		}, 4500);
+		}, 5000);
 
 		return () => clearInterval(interval);
 	});
 
-	const easeOutExpo: EasingFunction = (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t));
+	// Ultra-smooth cubic-bezier easing curves
+	const easeOutFluid: EasingFunction = (t) => {
+		// Approximation of cubic-bezier(0.22, 1, 0.36, 1)
+		const p = 1 - t;
+		return 1 - p * p * p * (1 + 3 * t);
+	};
 
-	const easeOutCubic: EasingFunction = (t) => 1 - Math.pow(1 - t, 3);
+	const easeInOutFluid: EasingFunction = (t) => {
+		return t < 0.5 ? 2 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+	};
 
-	const easeInOutCubic: EasingFunction = (t) =>
-		t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+	const easeOutSoft: EasingFunction = (t) => {
+		// Gentle ease out with slight overshoot feel
+		return t === 1 ? 1 : 1 - Math.pow(2, -8 * t);
+	};
 
-	// Smoother, more natural easing functions
-	const easeInOutSine: EasingFunction = (t) => -(Math.cos(Math.PI * t) - 1) / 2;
-
-	const easeOutCirc: EasingFunction = (t) => Math.sqrt(1 - Math.pow(t - 1, 2));
-
-	const easeInOutCirc: EasingFunction = (t) =>
-		t < 0.5
-			? (1 - Math.sqrt(1 - Math.pow(2 * t, 2))) / 2
-			: (Math.sqrt(1 - Math.pow(-2 * t + 2, 2)) + 1) / 2;
-
-	interface Transition3DOptions {
+	interface TransitionOptions {
 		x?: number;
+		y?: number;
 		scale?: number;
+		opacity?: number;
 		duration?: number;
 		easing?: EasingFunction;
+		delay?: number;
 	}
 
-	function transition3D(
+	function fluidEnter(
 		node: Element,
-		{ x = 0, scale = 1, duration = 800, easing = easeInOutSine }: Transition3DOptions
+		{
+			x = 0,
+			y = 0,
+			scale = 1,
+			opacity = 0,
+			duration = 900,
+			easing = easeOutFluid,
+			delay = 0
+		}: TransitionOptions
 	): TransitionConfig {
-		const style = getComputedStyle(node);
-		const targetOpacity = +style.opacity;
-		const transform = style.transform === 'none' ? '' : style.transform;
-		const od = targetOpacity;
-
 		return {
+			delay,
 			duration,
 			easing,
-			css: (t, u) => `
-				transform: ${transform} translateX(${x * u}px) scale(${1 + (scale - 1) * u});
-				opacity: ${targetOpacity - od * u}
+			css: (t) => `
+				transform: translate(${x * (1 - t)}px, ${y * (1 - t)}px) scale(${scale + (1 - scale) * t});
+				opacity: ${opacity + (1 - opacity) * t};
 			`
 		};
 	}
 
-	function transition3DIn(node: Element, options: Transition3DOptions): TransitionConfig {
-		const style = getComputedStyle(node);
-		const transform = style.transform === 'none' ? '' : style.transform;
-		const { x = 0, scale = 0.8, duration = 1200, easing = easeOutCirc } = options;
-
+	function fluidExit(
+		node: Element,
+		{
+			x = 0,
+			y = 0,
+			scale = 1,
+			opacity = 0,
+			duration = 700,
+			easing = easeInOutFluid,
+			delay = 0
+		}: TransitionOptions
+	): TransitionConfig {
 		return {
+			delay,
 			duration,
 			easing,
 			css: (t) => `
-				transform: ${transform} translateX(${x * (1 - t)}px) scale(${scale + (1 - scale) * t})
+				transform: translate(${x * (1 - t)}px, ${y * (1 - t)}px) scale(${scale + (1 - scale) * t});
+				opacity: ${t * (1 - opacity)};
 			`
 		};
 	}
 
-	function transition3DOut(node: Element, options: Transition3DOptions): TransitionConfig {
-		const style = getComputedStyle(node);
-		const transform = style.transform === 'none' ? '' : style.transform;
-		const { x = 0, scale = 0.8, duration = 1000, easing = easeInOutCirc } = options;
-
+	function smoothEnter(
+		node: Element,
+		{
+			x = 0,
+			y = 0,
+			scale = 1,
+			opacity = 0,
+			duration = 650,
+			easing = easeOutPremium
+		}: TransitionOptions
+	): TransitionConfig {
 		return {
 			duration,
 			easing,
 			css: (t) => `
-				transform: ${transform} translateX(${x * (1 - t)}px) scale(${scale + (1 - scale) * t})
+				transform: translate(${x * (1 - t)}px, ${y * (1 - t)}px) scale(${scale + (1 - scale) * t});
+				opacity: ${opacity + (1 - opacity) * t};
+			`
+		};
+	}
+
+	function smoothExit(
+		node: Element,
+		{
+			x = 0,
+			y = 0,
+			scale = 1,
+			opacity = 0,
+			duration = 500,
+			easing = easeInOutPremium
+		}: TransitionOptions
+	): TransitionConfig {
+		return {
+			duration,
+			easing,
+			css: (t) => `
+				transform: translate(${x * (1 - t)}px, ${y * (1 - t)}px) scale(${scale + (1 - scale) * t});
+				opacity: ${t * (1 - opacity)};
 			`
 		};
 	}
 </script>
 
 <div class="relative w-full py-8">
-	<div class="relative h-64 md:h-80 lg:h-auto flex items-center justify-center overflow-hidden">
+	<div class="relative h-64 md:h-80 lg:h-auto flex items-center justify-center overflow-visible">
 		{#if images.length >= 5}
 			{#key currentIndex}
 				<!-- Far Previous (smallest) -->
 				<div
 					class="absolute left-0 top-1/2 -translate-y-1/2 z-[1]"
-					in:transition3DIn={{ x: -80, scale: 0.7, duration: 1000, easing: easeOutCirc }}
-					out:transition3DOut={{ x: -150, scale: 0.5, duration: 900, easing: easeInOutCirc }}
+					in:fluidEnter={{ x: -150, y: 20, scale: 0.7, opacity: 0, duration: 1000 }}
+					out:fluidExit={{ x: -220, y: -15, scale: 0.65, opacity: 1, duration: 700 }}
 				>
 					<img
 						src={images[getIndex(-2)].src}
@@ -126,8 +169,8 @@
 				<!-- Previous (smaller than current) -->
 				<div
 					class="absolute left-[8%] top-1/2 -translate-y-1/2 z-[2]"
-					in:transition3DIn={{ x: -60, scale: 0.85, duration: 1100, easing: easeOutCirc }}
-					out:transition3DOut={{ x: -120, scale: 0.7, duration: 1000, easing: easeInOutCirc }}
+					in:fluidEnter={{ x: -120, y: 15, scale: 0.85, opacity: 0, duration: 950 }}
+					out:fluidExit={{ x: -200, y: -10, scale: 0.8, opacity: 1, duration: 700 }}
 				>
 					<img
 						src={images[getIndex(-1)].src}
@@ -140,8 +183,8 @@
 				<!-- Current Image (full height) -->
 				<div
 					class="relative z-30"
-					in:transition3DIn={{ x: 60, scale: 0.92, duration: 1200, easing: easeOutCirc }}
-					out:transition3DOut={{ x: -60, scale: 0.92, duration: 1000, easing: easeInOutCirc }}
+					in:fluidEnter={{ x: 150, y: -20, scale: 1.08, opacity: 0, duration: 1100 }}
+					out:fluidExit={{ x: -150, y: 15, scale: 0.92, opacity: 0, duration: 700 }}
 				>
 					<img
 						src={images[currentIndex].src}
@@ -154,8 +197,8 @@
 				<!-- Next (smaller than current) -->
 				<div
 					class="absolute right-[8%] top-1/2 -translate-y-1/2 z-[2]"
-					in:transition3DIn={{ x: 60, scale: 0.85, duration: 1100, easing: easeOutCirc }}
-					out:transition3DOut={{ x: 120, scale: 0.7, duration: 1000, easing: easeInOutCirc }}
+					in:fluidEnter={{ x: 120, y: 15, scale: 0.85, opacity: 0, duration: 950 }}
+					out:fluidExit={{ x: 200, y: -10, scale: 0.8, opacity: 1, duration: 700 }}
 				>
 					<img
 						src={images[getIndex(1)].src}
@@ -168,8 +211,8 @@
 				<!-- Far Next (smallest) -->
 				<div
 					class="absolute right-0 top-1/2 -translate-y-1/2 z-[1]"
-					in:transition3DIn={{ x: 80, scale: 0.7, duration: 1000, easing: easeOutCirc }}
-					out:transition3DOut={{ x: 150, scale: 0.5, duration: 900, easing: easeInOutCirc }}
+					in:fluidEnter={{ x: 150, y: 20, scale: 0.7, opacity: 0, duration: 1000 }}
+					out:fluidExit={{ x: 220, y: -15, scale: 0.65, opacity: 1, duration: 700 }}
 				>
 					<img
 						src={images[getIndex(2)].src}
@@ -184,8 +227,8 @@
 				<!-- Previous -->
 				<div
 					class="absolute left-[10%] top-1/2 -translate-y-1/2 z-[2]"
-					in:transition3DIn={{ x: -60, scale: 0.85, duration: 1100, easing: easeOutCirc }}
-					out:transition3DOut={{ x: -120, scale: 0.7, duration: 1000, easing: easeInOutCirc }}
+					in:fluidEnter={{ x: -120, y: 15, scale: 0.85, opacity: 0, duration: 950 }}
+					out:fluidExit={{ x: -200, y: -10, scale: 0.8, opacity: 1, duration: 700 }}
 				>
 					<img
 						src={images[getIndex(-1)].src}
@@ -198,8 +241,8 @@
 				<!-- Current -->
 				<div
 					class="relative z-30"
-					in:transition3DIn={{ x: 60, scale: 0.92, duration: 1200, easing: easeOutCirc }}
-					out:transition3DOut={{ x: -60, scale: 0.92, duration: 1000, easing: easeInOutCirc }}
+					in:fluidEnter={{ x: 150, y: -20, scale: 1.08, opacity: 0, duration: 1100 }}
+					out:fluidExit={{ x: -150, y: 15, scale: 0.92, opacity: 0, duration: 700 }}
 				>
 					<img
 						src={images[currentIndex].src}
@@ -212,8 +255,8 @@
 				<!-- Next -->
 				<div
 					class="absolute right-[10%] top-1/2 -translate-y-1/2 z-[2]"
-					in:transition3DIn={{ x: 60, scale: 0.85, duration: 1100, easing: easeOutCirc }}
-					out:transition3DOut={{ x: 120, scale: 0.7, duration: 1000, easing: easeInOutCirc }}
+					in:fluidEnter={{ x: 120, y: 15, scale: 0.85, opacity: 0, duration: 950 }}
+					out:fluidExit={{ x: 200, y: -10, scale: 0.8, opacity: 1, duration: 700 }}
 				>
 					<img
 						src={images[getIndex(1)].src}
@@ -228,8 +271,8 @@
 				<!-- Previous -->
 				<div
 					class="absolute left-[12%] top-1/2 -translate-y-1/2 z-[2]"
-					in:transition3DIn={{ x: -60, scale: 0.85, duration: 1100, easing: easeOutCirc }}
-					out:transition3DOut={{ x: -120, scale: 0.7, duration: 1000, easing: easeInOutCirc }}
+					in:fluidEnter={{ x: -120, y: 15, scale: 0.85, opacity: 0, duration: 950 }}
+					out:fluidExit={{ x: -200, y: -10, scale: 0.8, opacity: 1, duration: 700 }}
 				>
 					<img
 						src={images[getIndex(-1)].src}
@@ -242,8 +285,8 @@
 				<!-- Current -->
 				<div
 					class="relative z-30"
-					in:transition3DIn={{ x: 60, scale: 0.92, duration: 1200, easing: easeOutCirc }}
-					out:transition3DOut={{ x: -60, scale: 0.92, duration: 1000, easing: easeInOutCirc }}
+					in:fluidEnter={{ x: 150, y: -20, scale: 1.08, opacity: 0, duration: 1100 }}
+					out:fluidExit={{ x: -150, y: 15, scale: 0.92, opacity: 0, duration: 700 }}
 				>
 					<img
 						src={images[currentIndex].src}
@@ -256,8 +299,8 @@
 				<!-- Next -->
 				<div
 					class="absolute right-[12%] top-1/2 -translate-y-1/2 z-[2]"
-					in:transition3DIn={{ x: 60, scale: 0.85, duration: 1100, easing: easeOutCirc }}
-					out:transition3DOut={{ x: 120, scale: 0.7, duration: 1000, easing: easeInOutCirc }}
+					in:fluidEnter={{ x: 120, y: 15, scale: 0.85, opacity: 0, duration: 950 }}
+					out:fluidExit={{ x: 200, y: -10, scale: 0.8, opacity: 1, duration: 700 }}
 				>
 					<img
 						src={images[getIndex(1)].src}
@@ -271,8 +314,8 @@
 			{#key currentIndex}
 				<div
 					class="relative z-30 flex"
-					in:transition3DIn={{ x: 60, scale: 0.92, duration: 1200, easing: easeOutCirc }}
-					out:transition3DOut={{ x: -60, scale: 0.92, duration: 1000, easing: easeInOutCirc }}
+					in:fluidEnter={{ x: 150, y: -20, scale: 1.08, opacity: 0, duration: 1100 }}
+					out:fluidExit={{ x: -150, y: 15, scale: 0.92, opacity: 0, duration: 700 }}
 				>
 					<img
 						src={images[0].src}
@@ -292,44 +335,8 @@
 			{#key currentIndex}
 				<div
 					class="relative z-30"
-					in:transition3DIn={{ x: 60, scale: 0.92, duration: 1200, easing: easeOutCirc }}
-					out:transition3DOut={{ x: -60, scale: 0.92, duration: 1000, easing: easeInOutCirc }}
-				>
-					<img
-						src={images[0].src}
-						alt={images[0].alt}
-						class="carousel-image carousel-current"
-						draggable="false"
-					/>
-				</div>
-			{/key}
-		{:else if images.length === 2}
-			{#key currentIndex}
-				<div
-					class="relative z-10 flex"
-					in:transition3DIn={{ x: 60, scale: 0.92, duration: 1300, easing: easeOutCirc }}
-					out:transition3DOut={{ x: -60, scale: 0.92, duration: 1100, easing: easeInOutCirc }}
-				>
-					<img
-						src={images[0].src}
-						alt={images[0].alt}
-						class="carousel-image carousel-current"
-						draggable="false"
-					/>
-					<img
-						src={images[1].src}
-						alt={images[1].alt}
-						class="carousel-image carousel-current"
-						draggable="false"
-					/>
-				</div>
-			{/key}
-		{:else if images.length === 1}
-			{#key currentIndex}
-				<div
-					class="relative z-10"
-					in:transition3DIn={{ x: 60, scale: 0.92, duration: 1300, easing: easeOutCirc }}
-					out:transition3DOut={{ x: -60, scale: 0.92, duration: 1100, easing: easeInOutCirc }}
+					in:fluidEnter={{ x: 150, y: -20, scale: 1.08, opacity: 0, duration: 1100 }}
+					out:fluidExit={{ x: -150, y: 15, scale: 0.92, opacity: 0, duration: 700 }}
 				>
 					<img
 						src={images[0].src}
@@ -417,6 +424,9 @@
 <style>
 	.carousel-image {
 		object-fit: cover;
+		will-change: transform, opacity, filter;
+		backface-visibility: hidden;
+		-webkit-font-smoothing: antialiased;
 	}
 
 	.carousel-current {
@@ -430,21 +440,18 @@
 		height: 180px;
 		width: auto;
 		border-radius: 48px 0 0 48px;
-		opacity: 0.85;
 	}
 
 	.carousel-next {
 		height: 180px;
 		width: auto;
 		border-radius: 0 48px 48px 0;
-		opacity: 0.85;
 	}
 
 	.carousel-far {
 		height: 108px;
 		width: auto;
 		border-radius: 48px 0 0 48px;
-		opacity: 0.4;
 	}
 
 	.carousel-far-right {
