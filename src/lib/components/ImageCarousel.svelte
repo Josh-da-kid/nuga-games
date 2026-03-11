@@ -104,48 +104,6 @@
 			`
 		};
 	}
-
-	function smoothEnter(
-		node: Element,
-		{
-			x = 0,
-			y = 0,
-			scale = 1,
-			opacity = 0,
-			duration = 650,
-			easing = easeOutPremium
-		}: TransitionOptions
-	): TransitionConfig {
-		return {
-			duration,
-			easing,
-			css: (t) => `
-				transform: translate(${x * (1 - t)}px, ${y * (1 - t)}px) scale(${scale + (1 - scale) * t});
-				opacity: ${opacity + (1 - opacity) * t};
-			`
-		};
-	}
-
-	function smoothExit(
-		node: Element,
-		{
-			x = 0,
-			y = 0,
-			scale = 1,
-			opacity = 0,
-			duration = 500,
-			easing = easeInOutPremium
-		}: TransitionOptions
-	): TransitionConfig {
-		return {
-			duration,
-			easing,
-			css: (t) => `
-				transform: translate(${x * (1 - t)}px, ${y * (1 - t)}px) scale(${scale + (1 - scale) * t});
-				opacity: ${t * (1 - opacity)};
-			`
-		};
-	}
 </script>
 
 <div class="relative w-full py-8">
