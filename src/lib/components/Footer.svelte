@@ -1,11 +1,7 @@
 <footer class="bg-gray-900 pt-32 md:pt-40 lg:pt-48 pb-12 md:pb-16 relative z-30">
-	<div class="max-w-[1480px] mx-auto px-4 sm:px-6 w-full justify-center items-center flex flex-col">
-		<div
-			class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-24 lg:gap-32 justify-items-center"
-		>
-			<div
-				class="flex flex-col gap-8 md:gap-10 w-full text-center md:text-left max-w-md lg:min-w-[400px]"
-			>
+	<div class="max-w-[1480px] mx-auto px-4 sm:px-6 md:px-16 w-full">
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-24 lg:gap-32">
+			<div class="flex flex-col gap-8 md:gap-10 w-full text-center md:text-left lg:col-span-2">
 				<div class="text-white font-bold text-2xl md:text-4xl w-full">
 					<span class="">Paradise</span>
 					<span class="text-blue-600">Games</span> <br />
@@ -15,8 +11,7 @@
 				<p
 					class="text-gray-400 font-semibold text-base sm:text-lg md:text-xl leading-relaxed w-full"
 				>
-					The 28th Nigeria University Games - A <br class="hidden sm:inline" /> confluence of
-					Sports, Carnival & <br class="hidden sm:inline" /> Entertainment
+					The 28th Nigeria University Games - A <br /> confluence of Sports, Carnival & <br /> Entertainment
 				</p>
 
 				<div class="flex gap-4 justify-center md:justify-start">
