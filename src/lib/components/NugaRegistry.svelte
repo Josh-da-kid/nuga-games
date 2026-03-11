@@ -11,7 +11,7 @@
 				class="absolute inset-0 opacity-20"
 				style="background-image: url('/Element.svg'); background-size: 100% 100%; background-repeat: no-repeat; background-position: left;"
 			></div>
-			<div class="z-10 text-center lg:text-left">
+			<div class="z-10 text-center md:text-left">
 				<h1
 					class="text-xl font-['Raleway'] text-white md:text-3xl lg:text-5xl mb-4 md:mb-6 lg:mb-8 font-bold"
 				>
@@ -21,7 +21,8 @@
 					class="text-gray-300 font-['Raleway'] text-sm md:text-lg lg:text-xl mb-4 md:mb-6 lg:mb-8 font-medium"
 				>
 					A central hub showcasing verified profiles, official records, and historic
-					highlights--built for <br class="hidden lg:block" />
+					<br class="hidden md:block lg:hidden" />highlights--built for
+					<br class="hidden lg:block" />
 					discovery, recognition, and legacy.
 				</p>
 

@@ -18,7 +18,7 @@
 					<span class="relative inline-block px-1">
 						<span class="relative z-10">NUGames</span>
 
-						<img src="brush.svg" alt="" class="w-28 h-9 sm:w-full sm:h-auto" />
+						<img src="brush.svg" alt="" class="w-28 h-9 sm:w-36 md:w-40 lg:w-full sm:h-auto" />
 					</span>
 					Volunteer
 				</h1>

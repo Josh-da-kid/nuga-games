@@ -5,13 +5,13 @@
 <section class="py-8 md:py-12 lg:py-16">
 	<div class="mx-auto">
 		<div
-			class="border-2 border-[#161C2D] p-4 sm:p-6 md:p-12 lg:p-12 relative overflow-hidden min-h-[280px] md:min-h-[350px] lg:min-h-[442px] flex-col sm:flex-row gap-8 sm:gap-12 flex justify-center"
+			class="border-2 border-[#161C2D] p-4 sm:p-6 md:p-8 lg:p-12 relative overflow-hidden min-h-[280px] md:min-h-[350px] lg:min-h-[442px] flex-col sm:flex-row gap-8 sm:gap-12 flex justify-center"
 		>
-			<div class="w-full sm:w-auto">
+			<div class="w-full sm:w-[350px] md:w-[400px] lg:w-auto flex-shrink-0">
 				<img
 					src="/store.png"
 					alt="NUGA Store Background"
-					class="w-full h-[280px] md:h-[380px] object-contain"
+					class="w-full h-[260px] sm:h-[300px] md:h-[340px] lg:h-[380px] object-contain"
 				/>
 			</div>
 
@@ -21,7 +21,7 @@
 				>
 					<span class="relative inline-block px-1">
 						<span class="relative z-10">NUGames</span>
-						<img src="brush2.svg" alt="" class="w-24 h-5 sm:w-full sm:h-auto" />
+						<img src="brush2.svg" alt="" class="w-24 h-5 sm:w-36 md:w-40 lg:w-full sm:h-auto" />
 					</span>
 					Online Store
 				</h1>
